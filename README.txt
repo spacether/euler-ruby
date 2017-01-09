@@ -1,0 +1,1 @@
+This repository stores Project Euler solutions in Ruby, written by me, Justin Black.
