@@ -9,20 +9,22 @@ class PrimeMaker
     @pad = -1
   end
 
-  def get_subset
-    sqrtn = ((@k*6+1)**0.5).floor
-    @primes.take_while { |n| n <= sqrtn }
+  def prime?(num)
+    upbound = (num**0.5).floor
+    @primes.each do |prime|
+      return false if num % prime == 0
+      break if prime > upbound
+    end
+    true
   end
 
   def next_prime
     currlength = @primes.length
-    subset = get_subset
     while @primes.length == currlength
       num = @k*6 + @pad
-      @primes << num if subset.all? { |n| num % n != 0 }
+      @primes << num if self.prime?(num)
       if @pad == 1
         @k += 1
-        subset = get_subset
       end
       @pad = -@pad
     end
@@ -37,3 +39,4 @@ while pmaker.primes.last < 2000000
 end
 pmaker.primes.pop
 puts pmaker.primes.inject(:+)
+# done in 3.8s
