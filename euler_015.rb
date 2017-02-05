@@ -3,7 +3,6 @@
 def paths(cubes_per_side)
   side_size = cubes_per_side + 1
   nodes = Array.new(side_size) { Array.new(side_size) { 1 } }
-  nodes[0][0] = 1
   (1...side_size).each do |i|
     (1...side_size).each do |j|
       nodes[i][j] = nodes[i][j - 1] + nodes[i - 1][j]
